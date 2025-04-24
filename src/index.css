@@ -1,0 +1,178 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 250 25% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 255 84% 75%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 250 34% 90%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 256 73% 75%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 255 84% 75%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 10% 15%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 10% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 255 70% 70%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 250 34% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 256 73% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 255 70% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+  
+  /* Make sure texts are visible in calendar */
+  .rdp-day {
+    @apply text-foreground font-medium;
+  }
+  
+  /* Ensure popover content appears above other elements */
+  .rdp-caption_label {
+    @apply text-foreground font-medium;
+  }
+
+  /* Make all calendar days visible with proper styling */
+  .rdp-day_today {
+    @apply font-bold text-primary border border-primary;
+  }
+
+  /* Make sure the hover card shows correctly */
+  .rdp-day_selected, 
+  .rdp-day_selected:focus-visible, 
+  .rdp-day_selected:hover {
+    @apply text-primary-foreground bg-primary;
+  }
+}
+
+@layer components {
+  .memory-card {
+    @apply relative rounded-xl overflow-hidden transition-all duration-300 bg-card hover:shadow-md;
+  }
+
+  .memory-card:hover {
+    @apply transform scale-[1.02];
+  }
+
+  .timeline-dot {
+    @apply w-3 h-3 rounded-full bg-memora-purple z-10;
+  }
+
+  .timeline-line {
+    @apply absolute h-full w-0.5 bg-memora-lightPurple left-1/2 -translate-x-1/2 top-0 z-0;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-2 p-2 rounded-md hover:bg-secondary transition-colors;
+  }
+
+  .nav-link.active {
+    @apply bg-secondary text-primary font-medium;
+  }
+  
+  /* Calendar day styling */
+  .rdp-day_today:not(.rdp-day_outside) {
+    @apply font-bold text-primary;
+  }
+  
+  /* Make calendar more responsive */
+  .rdp-months {
+    @apply w-full justify-center;
+  }
+  
+  .rdp-month {
+    @apply w-full max-w-[350px];
+  }
+  
+  .rdp-table {
+    @apply w-full;
+  }
+
+  /* Calendar hover styles */
+  .calendar-day-with-memory {
+    @apply relative font-medium text-foreground border border-primary bg-primary/10 rounded-md cursor-pointer;
+  }
+
+  .calendar-day-hover-card {
+    @apply absolute z-50 w-60 bg-card shadow-lg rounded-lg p-2 border;
+  }
+}
+
+/* Additional responsive fixes */
+@media (max-width: 640px) {
+  .rdp {
+    @apply max-w-full;
+  }
+  
+  .rdp-month {
+    @apply w-full;
+  }
+  
+  .rdp-table {
+    @apply w-full;
+  }
+  
+  .rdp-cell {
+    @apply text-center;
+  }
+}
